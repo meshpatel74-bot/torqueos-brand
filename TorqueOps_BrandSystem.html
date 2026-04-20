@@ -1,0 +1,1184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TorqueOps × Torque OS — Brand System</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,600&family=Barlow+Condensed:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* ── ROOT VARIABLES ── */
+:root {
+  /* TorqueOps (Agency) — Industrial, grounded, operator energy */
+  --ops-black:    #0E0E0E;
+  --ops-charcoal: #1C1C1C;
+  --ops-steel:    #2A2A2A;
+  --ops-orange:   #E85D1A;
+  --ops-amber:    #F59E0B;
+  --ops-cream:    #F5F0E8;
+  --ops-white:    #FAFAF8;
+
+  /* Torque OS (Product/System) — Precise, technical, systematic */
+  --os-navy:      #0A1628;
+  --os-blue:      #1B4FD8;
+  --os-cyan:      #06B6D4;
+  --os-green:     #10B981;
+  --os-slate:     #1E293B;
+  --os-light:     #F0F7FF;
+  --os-white:     #FFFFFF;
+
+  /* Shared neutrals */
+  --gray-100: #F4F4F4;
+  --gray-200: #E5E5E5;
+  --gray-400: #9CA3AF;
+  --gray-600: #4B5563;
+  --gray-800: #1F2937;
+}
+
+body {
+  font-family: 'Barlow', sans-serif;
+  background: #080808;
+  color: #fff;
+  overflow-x: hidden;
+}
+
+/* ── STICKY NAV ── */
+.nav {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(8,8,8,0.95);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid #1a1a1a;
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 16px 48px;
+}
+.nav-brand {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 20px; letter-spacing: 3px; color: #fff;
+}
+.nav-brand span { color: var(--ops-orange); }
+.nav-links { display: flex; gap: 4px; }
+.nav-link {
+  padding: 6px 14px; border-radius: 6px; font-size: 12px;
+  font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
+  cursor: pointer; transition: all 0.2s; text-decoration: none; color: #888;
+  border: 1px solid transparent;
+}
+.nav-link:hover { color: #fff; background: #111; border-color: #333; }
+.nav-link.ops { color: var(--ops-orange); border-color: #2a1500; }
+.nav-link.os  { color: var(--os-cyan);    border-color: #001a2a; }
+
+/* ── HERO SPLIT ── */
+.hero {
+  display: grid; grid-template-columns: 1fr 1fr;
+  min-height: 100vh; position: relative; overflow: hidden;
+}
+.hero::after {
+  content: '';
+  position: absolute; top: 0; left: 50%; transform: translateX(-1px);
+  width: 2px; height: 100%;
+  background: linear-gradient(to bottom, transparent, #333 20%, #333 80%, transparent);
+  z-index: 10;
+}
+
+/* TORQUE OPS side */
+.hero-ops {
+  background: var(--ops-black);
+  padding: 80px 56px 80px 48px;
+  display: flex; flex-direction: column; justify-content: center;
+  position: relative; overflow: hidden;
+}
+.hero-ops::before {
+  content: '';
+  position: absolute; bottom: -80px; right: -80px;
+  width: 320px; height: 320px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(232,93,26,0.15) 0%, transparent 70%);
+}
+.hero-ops::after {
+  content: 'OPS';
+  position: absolute; bottom: 20px; right: 30px;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 180px; letter-spacing: -5px; line-height: 1;
+  color: rgba(232,93,26,0.04);
+  pointer-events: none; user-select: none;
+}
+
+/* TORQUE OS side */
+.hero-os {
+  background: var(--os-navy);
+  padding: 80px 48px 80px 56px;
+  display: flex; flex-direction: column; justify-content: center;
+  position: relative; overflow: hidden;
+}
+.hero-os::before {
+  content: '';
+  position: absolute; top: -80px; left: -80px;
+  width: 320px; height: 320px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(6,182,212,0.12) 0%, transparent 70%);
+}
+.hero-os::after {
+  content: 'OS';
+  position: absolute; top: 20px; left: 30px;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 180px; letter-spacing: -5px; line-height: 1;
+  color: rgba(6,182,212,0.04);
+  pointer-events: none; user-select: none;
+}
+
+/* Hero content */
+.brand-tag {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700; font-size: 11px; letter-spacing: 4px;
+  text-transform: uppercase; margin-bottom: 12px;
+  display: flex; align-items: center; gap: 10px;
+}
+.brand-tag::after { content: ''; flex: 0 0 40px; height: 1px; background: currentColor; opacity: 0.3; }
+
+.hero-wordmark {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 72px; letter-spacing: 2px; line-height: 0.9;
+  margin-bottom: 6px;
+}
+.hero-sub {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 600; font-size: 13px; letter-spacing: 3px;
+  text-transform: uppercase; opacity: 0.5; margin-bottom: 28px;
+}
+.hero-tagline {
+  font-size: 17px; font-weight: 500; line-height: 1.6;
+  opacity: 0.8; margin-bottom: 32px; max-width: 380px;
+}
+.hero-tagline strong { opacity: 1; font-weight: 700; }
+
+.gear-tiers { display: flex; flex-direction: column; gap: 10px; margin-bottom: 36px; }
+.gear-item {
+  display: flex; align-items: center; gap: 14px;
+  padding: 12px 16px; border-radius: 8px;
+}
+.gear-num {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 28px; line-height: 1; min-width: 36px;
+}
+.gear-content {}
+.gear-name { font-weight: 800; font-size: 13px; letter-spacing: 1px; text-transform: uppercase; }
+.gear-desc { font-size: 12px; opacity: 0.6; margin-top: 1px; }
+
+.hero-cta {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 14px 28px; border-radius: 8px;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 800; font-size: 15px; letter-spacing: 2px;
+  text-transform: uppercase; cursor: pointer;
+  border: none; text-decoration: none;
+  transition: all 0.2s; width: fit-content;
+}
+
+.sys-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 32px; }
+.sys-chip {
+  padding: 6px 14px; border-radius: 20px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px; font-weight: 600;
+  border: 1px solid rgba(6,182,212,0.3);
+  color: var(--os-cyan); background: rgba(6,182,212,0.06);
+}
+
+/* ── SECTION WRAPPER ── */
+.section { padding: 80px 48px; }
+.section-header {
+  display: flex; align-items: baseline; gap: 16px;
+  margin-bottom: 48px; padding-bottom: 20px;
+  border-bottom: 1px solid #1a1a1a;
+}
+.s-num {
+  font-family: 'Bebas Neue', sans-serif; font-size: 56px; color: #1a1a1a; line-height: 1;
+}
+.s-titles { }
+.s-title { font-family: 'Bebas Neue', sans-serif; font-size: 32px; letter-spacing: 1px; }
+.s-desc { font-size: 13px; color: #555; margin-top: 4px; font-weight: 500; }
+
+/* ── FUNNEL SECTION ── */
+.funnel-section { background: #050505; }
+
+.funnel-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; }
+
+.funnel-col {
+  padding: 40px 40px;
+  position: relative; overflow: hidden;
+}
+.funnel-col.ops-col { background: #0a0a0a; }
+.funnel-col.os-col  { background: #060d1a; }
+
+.funnel-label {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 900; font-size: 10px; letter-spacing: 4px;
+  text-transform: uppercase; margin-bottom: 24px;
+  padding: 6px 14px; border-radius: 4px; display: inline-block;
+}
+.funnel-label.ops { background: rgba(232,93,26,0.15); color: var(--ops-orange); }
+.funnel-label.os  { background: rgba(6,182,212,0.12); color: var(--os-cyan); }
+
+.funnel-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 36px; letter-spacing: 1px; margin-bottom: 8px; line-height: 1;
+}
+.funnel-sub { font-size: 13px; color: #555; margin-bottom: 28px; font-weight: 600; letter-spacing: 0.5px; }
+
+.funnel-items { display: flex; flex-direction: column; gap: 12px; margin-bottom: 28px; }
+.funnel-item {
+  display: flex; gap: 12px; align-items: flex-start;
+  padding: 14px 16px; border-radius: 8px;
+}
+.funnel-item.ops-item { background: rgba(232,93,26,0.06); border-left: 3px solid var(--ops-orange); }
+.funnel-item.os-item  { background: rgba(6,182,212,0.06);  border-left: 3px solid var(--os-cyan); }
+
+.fi-icon { font-size: 20px; flex-shrink: 0; margin-top: 1px; }
+.fi-content {}
+.fi-title { font-weight: 800; font-size: 13px; margin-bottom: 2px; }
+.fi-desc { font-size: 12px; color: #666; line-height: 1.5; }
+
+.icp-pills { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 24px; }
+.icp-pill {
+  padding: 5px 12px; border-radius: 20px;
+  font-size: 11px; font-weight: 700; letter-spacing: 0.5px;
+}
+.icp-pill.ops { background: #1a0900; border: 1px solid rgba(232,93,26,0.2); color: var(--ops-orange); }
+.icp-pill.os  { background: #001020; border: 1px solid rgba(6,182,212,0.2); color: var(--os-cyan); }
+
+.domain-pill {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 10px 18px; border-radius: 8px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px; font-weight: 600;
+}
+.domain-pill.ops { background: rgba(232,93,26,0.1); border: 1px solid rgba(232,93,26,0.3); color: var(--ops-orange); }
+.domain-pill.os  { background: rgba(6,182,212,0.1); border: 1px solid rgba(6,182,212,0.3); color: var(--os-cyan); }
+
+/* ── COLOR SCHEMES ── */
+.color-section { background: #070707; }
+.color-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; }
+
+.color-card {
+  border-radius: 16px; overflow: hidden;
+  border: 1px solid #1a1a1a;
+  transition: transform 0.2s, border-color 0.2s;
+}
+.color-card:hover { transform: translateY(-4px); border-color: #333; }
+.color-card.recommended { border-color: #10B981; }
+
+.cc-badge {
+  padding: 10px 18px; font-size: 10px; font-weight: 800;
+  letter-spacing: 3px; text-transform: uppercase;
+}
+.cc-swatch-row { display: flex; height: 60px; }
+.cc-swatch { flex: 1; }
+.cc-body { padding: 20px; background: #0a0a0a; }
+
+/* Mini dual-brand preview */
+.mini-dual { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; margin-bottom: 16px; border-radius: 10px; overflow: hidden; }
+.mini-ops, .mini-os { padding: 14px 16px; }
+.mini-wordmark { font-family: 'Bebas Neue', sans-serif; font-size: 18px; letter-spacing: 1px; }
+.mini-tagline { font-size: 9px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; margin-top: 3px; opacity: 0.6; }
+.mini-strip { grid-column: 1 / -1; padding: 8px 16px; }
+.mini-strip-text { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 12px; letter-spacing: 2px; }
+
+.palette-grid { display: flex; flex-direction: column; gap: 6px; margin-bottom: 14px; }
+.palette-row { display: flex; align-items: center; gap: 10px; }
+.p-dot { width: 22px; height: 22px; border-radius: 5px; flex-shrink: 0; }
+.p-info {}
+.p-name { font-size: 11px; font-weight: 700; color: #ccc; }
+.p-role { font-size: 10px; color: #555; }
+
+.verdict { padding: 10px 14px; border-radius: 8px; background: rgba(255,255,255,0.03); font-size: 11.5px; color: #666; line-height: 1.5; }
+.verdict strong { color: #aaa; }
+.rec-tag { display: inline-flex; align-items: center; gap: 4px; background: rgba(16,185,129,0.15); border: 1px solid rgba(16,185,129,0.3); border-radius: 20px; padding: 3px 10px; font-size: 10px; font-weight: 800; color: #10B981; letter-spacing: 1px; text-transform: uppercase; margin-left: 8px; vertical-align: middle; }
+
+/* ── MESSAGING SECTION ── */
+.msg-section { background: #040404; }
+.msg-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+.msg-card { border-radius: 14px; overflow: hidden; border: 1px solid #1a1a1a; }
+.msg-header { padding: 18px 22px 14px; }
+.msg-header-label { font-size: 10px; font-weight: 800; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 6px; opacity: 0.6; }
+.msg-headline { font-family: 'Bebas Neue', sans-serif; font-size: 26px; line-height: 1; letter-spacing: 0.5px; }
+.msg-body { padding: 18px 22px 20px; background: #080808; }
+.msg-hook { font-size: 14px; font-weight: 700; margin-bottom: 10px; }
+.msg-copy { font-size: 13px; color: #666; line-height: 1.7; margin-bottom: 14px; }
+.msg-cta {
+  display: inline-block; padding: 10px 20px; border-radius: 6px;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 800; font-size: 13px; letter-spacing: 1.5px;
+  text-transform: uppercase; text-decoration: none;
+}
+
+/* ── ARCHITECTURE DIAGRAM ── */
+.arch-section { background: #060606; }
+.arch-diagram {
+  background: #0a0a0a; border-radius: 16px;
+  border: 1px solid #1a1a1a; overflow: hidden;
+}
+.arch-top { display: grid; grid-template-columns: 1fr 1fr; }
+.arch-col { padding: 32px 36px; }
+.arch-col.ops-a { border-right: 1px solid #1a1a1a; }
+.arch-brand { font-family: 'Bebas Neue', sans-serif; font-size: 32px; letter-spacing: 2px; margin-bottom: 4px; }
+.arch-role { font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; opacity: 0.4; margin-bottom: 16px; }
+.arch-domain { font-family: 'JetBrains Mono', monospace; font-size: 13px; font-weight: 600; padding: 6px 12px; border-radius: 6px; display: inline-block; margin-bottom: 20px; }
+.arch-items { display: flex; flex-direction: column; gap: 8px; }
+.arch-item { display: flex; align-items: center; gap: 8px; font-size: 12.5px; color: #888; }
+.arch-item::before { content: '→'; font-weight: 700; font-size: 14px; }
+
+.arch-divider {
+  display: flex; align-items: center; justify-content: center;
+  padding: 20px; border-top: 1px solid #1a1a1a;
+  background: #050505;
+}
+.arch-divider-inner {
+  display: flex; align-items: center; gap: 20px;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700; font-size: 12px; letter-spacing: 2px;
+  text-transform: uppercase; color: #333;
+}
+.arch-divider-inner::before,
+.arch-divider-inner::after { content: ''; flex: 1; height: 1px; background: #1a1a1a; width: 80px; }
+
+.arch-bottom { padding: 28px 36px; border-top: 1px solid #1a1a1a; }
+.arch-bottom-title { font-family: 'Bebas Neue', sans-serif; font-size: 20px; letter-spacing: 1px; margin-bottom: 16px; color: #444; }
+.gear-flow { display: flex; gap: 0; align-items: stretch; }
+.gear-stage {
+  flex: 1; padding: 16px 20px; text-align: center;
+  position: relative;
+}
+.gear-stage:not(:last-child)::after {
+  content: '⟶';
+  position: absolute; right: -12px; top: 50%;
+  transform: translateY(-50%);
+  font-size: 18px; color: #333; z-index: 1;
+}
+.gs-brand { font-size: 9px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 6px; }
+.gs-gear { font-family: 'Bebas Neue', sans-serif; font-size: 14px; letter-spacing: 1px; margin-bottom: 4px; }
+.gs-name { font-size: 11px; font-weight: 700; }
+.gs-price { font-size: 10px; color: #555; margin-top: 4px; }
+
+/* ── APPLIED MOCKUPS ── */
+.mock-section { background: #050505; }
+.mock-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.mock-card { border-radius: 14px; overflow: hidden; border: 1px solid #1a1a1a; }
+.mock-label { padding: 10px 16px; font-size: 10px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; background: #0a0a0a; color: #444; }
+
+/* LinkedIn banners */
+.li-banner-ops {
+  background: var(--ops-black);
+  padding: 28px 36px; aspect-ratio: 4;
+  display: flex; align-items: center; justify-content: space-between;
+  position: relative; overflow: hidden;
+}
+.li-banner-ops::before {
+  content: '';
+  position: absolute; top: 0; right: 0; bottom: 0; width: 45%;
+  background: linear-gradient(135deg, transparent 30%, rgba(232,93,26,0.08));
+}
+.li-banner-os {
+  background: var(--os-navy);
+  padding: 28px 36px; aspect-ratio: 4;
+  display: flex; align-items: center; justify-content: space-between;
+  position: relative; overflow: hidden;
+}
+.li-banner-os::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+  background: radial-gradient(ellipse at 70% 50%, rgba(27,79,216,0.15) 0%, transparent 60%);
+}
+
+/* Biz cards */
+.biz-card-ops {
+  background: var(--ops-black); padding: 28px 32px;
+  aspect-ratio: 1.75; display: flex; flex-direction: column;
+  justify-content: space-between; position: relative; overflow: hidden;
+}
+.biz-card-ops::before {
+  content: '';
+  position: absolute; top: 0; right: 0;
+  width: 0; height: 0;
+  border-top: 80px solid var(--ops-orange);
+  border-left: 80px solid transparent;
+}
+.biz-card-os {
+  background: var(--os-slate); padding: 28px 32px;
+  aspect-ratio: 1.75; display: flex; flex-direction: column;
+  justify-content: space-between; position: relative; overflow: hidden;
+}
+.biz-card-os::before {
+  content: '';
+  position: absolute; bottom: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, var(--os-blue), var(--os-cyan), var(--os-green));
+}
+
+/* Email */
+.email-mock { background: #fff; color: #111; }
+.email-from { font-size: 11px; color: #999; padding: 16px 20px 4px; }
+.email-subj { font-size: 14px; font-weight: 700; color: #111; padding: 4px 20px 12px; border-bottom: 1px solid #eee; }
+.email-content { padding: 20px; }
+.email-logo-row { display: flex; align-items: center; gap: 8px; margin-bottom: 4px; }
+.email-logo-icon { width: 28px; height: 28px; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-family: 'Bebas Neue', sans-serif; font-size: 16px; color: white; flex-shrink: 0; }
+.email-logo-text { font-family: 'Bebas Neue', sans-serif; font-size: 20px; letter-spacing: 2px; color: #111; }
+.email-tag-line { font-size: 9px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: #999; margin-bottom: 16px; padding-left: 36px; }
+.email-body-text { font-size: 13px; color: #444; line-height: 1.7; margin-bottom: 16px; }
+.email-cta-btn { display: inline-block; padding: 10px 20px; border-radius: 6px; font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 13px; letter-spacing: 1.5px; text-transform: uppercase; text-decoration: none; }
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+.hero-ops > *, .hero-os > * { animation: fadeUp 0.6s ease both; }
+.hero-ops > *:nth-child(1) { animation-delay: 0.1s; }
+.hero-ops > *:nth-child(2) { animation-delay: 0.2s; }
+.hero-ops > *:nth-child(3) { animation-delay: 0.3s; }
+.hero-ops > *:nth-child(4) { animation-delay: 0.4s; }
+.hero-ops > *:nth-child(5) { animation-delay: 0.5s; }
+.hero-os  > *:nth-child(1) { animation-delay: 0.15s; }
+.hero-os  > *:nth-child(2) { animation-delay: 0.25s; }
+.hero-os  > *:nth-child(3) { animation-delay: 0.35s; }
+.hero-os  > *:nth-child(4) { animation-delay: 0.45s; }
+.hero-os  > *:nth-child(5) { animation-delay: 0.55s; }
+
+/* ── COMPARISON TABLE ── */
+.compare-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.compare-table th { padding: 12px 16px; text-align: left; font-size: 10px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; color: #444; border-bottom: 1px solid #1a1a1a; }
+.compare-table td { padding: 12px 16px; border-bottom: 1px solid #0f0f0f; color: #aaa; }
+.compare-table tr:hover td { background: #0a0a0a; }
+.td-ops { color: var(--ops-orange) !important; font-weight: 700; }
+.td-os  { color: var(--os-cyan) !important;   font-weight: 700; }
+.td-shared { color: #10B981 !important; font-weight: 700; }
+
+/* ── FOOTER ── */
+.footer {
+  background: #030303; border-top: 1px solid #111;
+  padding: 32px 48px; display: grid; grid-template-columns: 1fr 1fr 1fr;
+  align-items: center; gap: 20px;
+}
+.footer-brand { font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: 3px; }
+.footer-brand .ops-part { color: var(--ops-orange); }
+.footer-brand .os-part  { color: var(--os-cyan); }
+.footer-center { text-align: center; font-size: 12px; color: #333; font-weight: 500; }
+.footer-right { text-align: right; font-size: 12px; color: #333; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-brand">TORQUE<span>OPS</span> × TORQUE OS — Brand System</div>
+  <div class="nav-links">
+    <a href="#hero" class="nav-link ops">Agency</a>
+    <a href="#hero" class="nav-link os">Product</a>
+    <a href="#funnel" class="nav-link">Funnels</a>
+    <a href="#colors" class="nav-link">Colors</a>
+    <a href="#messaging" class="nav-link">Messaging</a>
+    <a href="#architecture" class="nav-link">Architecture</a>
+    <a href="#applied" class="nav-link">Applied</a>
+  </div>
+</nav>
+
+<!-- ═══════════════════════════════════
+     HERO — SPLIT BRAND IDENTITY
+     ═══════════════════════════════════ -->
+<section class="hero" id="hero">
+
+  <!-- TORQUE OPS — LEFT -->
+  <div class="hero-ops">
+    <div class="brand-tag" style="color:var(--ops-orange);">The Agency · torqueops.com</div>
+
+    <div>
+      <div class="hero-wordmark" style="color:#fff;">TORQUE<span style="color:var(--ops-orange);">OPS</span></div>
+      <div class="hero-sub" style="color:rgba(255,255,255,0.4);">Fractional CFO &amp; COO · Field Services &amp; Growth-Stage</div>
+    </div>
+
+    <div class="hero-tagline" style="color:rgba(255,255,255,0.75);">
+      <strong style="color:#fff;">The Agency. The Partner. The Equalizer.</strong><br>
+      Boots-on-the-ground financial and operational leadership for businesses doing $3M–$50M that are growing fast but running blind.
+    </div>
+
+    <div class="gear-tiers">
+      <div class="gear-item" style="background:rgba(232,93,26,0.08); border-left:3px solid var(--ops-orange);">
+        <div class="gear-num" style="color:var(--ops-orange);">1</div>
+        <div class="gear-content">
+          <div class="gear-name" style="color:#fff;">Low Gear — The Diagnostic</div>
+          <div class="gear-desc">Find where the business is slipping · $3,500 flat fee</div>
+        </div>
+      </div>
+      <div class="gear-item" style="background:rgba(245,158,11,0.08); border-left:3px solid var(--ops-amber);">
+        <div class="gear-num" style="color:var(--ops-amber);">2</div>
+        <div class="gear-content">
+          <div class="gear-name" style="color:#fff;">High Gear — The Scale-Up</div>
+          <div class="gear-desc">Fractional CFO/COO retainer · $5K–$15K/month</div>
+        </div>
+      </div>
+      <div class="gear-item" style="background:rgba(255,255,255,0.04); border-left:3px solid rgba(255,255,255,0.2);">
+        <div class="gear-num" style="color:rgba(255,255,255,0.5);">3</div>
+        <div class="gear-content">
+          <div class="gear-name" style="color:rgba(255,255,255,0.8);">Overdrive — Exit/Freedom</div>
+          <div class="gear-desc">Business runs without you · custom + success fee</div>
+        </div>
+      </div>
+    </div>
+
+    <a href="#" class="hero-cta" style="background:var(--ops-orange); color:#fff;">
+      Request a Diagnostic →
+    </a>
+  </div>
+
+  <!-- TORQUE OS — RIGHT -->
+  <div class="hero-os">
+    <div class="brand-tag" style="color:var(--os-cyan);">The System · gettorqueos.com</div>
+
+    <div>
+      <div class="hero-wordmark" style="color:#fff;">TORQUE<span style="color:var(--os-cyan);">OS</span></div>
+      <div class="hero-sub" style="color:rgba(255,255,255,0.4);">The Operating Framework · Install Once. Run Forever.</div>
+    </div>
+
+    <div class="hero-tagline" style="color:rgba(255,255,255,0.75);">
+      <strong style="color:#fff;">The System. The Framework. The Upgrade.</strong><br>
+      The proprietary financial and operational OS that stays in the business — the 13-week model, AI audit toolkit, and data integration playbook.
+    </div>
+
+    <div class="sys-chips">
+      <span class="sys-chip">Torque 13™ Forecast</span>
+      <span class="sys-chip">AI Ops Audit</span>
+      <span class="sys-chip">Cash Waterfall Model</span>
+      <span class="sys-chip">QBO Integration</span>
+      <span class="sys-chip">Jobber Sync</span>
+      <span class="sys-chip">KPI Dashboard</span>
+      <span class="sys-chip">SOP Engine</span>
+    </div>
+
+    <div style="margin-bottom:28px;">
+      <div style="font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#1E3A5F;margin-bottom:10px;">Entry Points</div>
+      <div style="display:flex;flex-direction:column;gap:8px;">
+        <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:rgba(255,255,255,0.7);">
+          <span style="color:var(--os-green);font-weight:700;">→</span>
+          Free 13-Week Cash Flow Template
+        </div>
+        <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:rgba(255,255,255,0.7);">
+          <span style="color:var(--os-green);font-weight:700;">→</span>
+          Free AI Ops Self-Assessment (18 questions)
+        </div>
+        <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:rgba(255,255,255,0.7);">
+          <span style="color:var(--os-cyan);font-weight:700;">→</span>
+          Torque OS Diagnostic — $3,500 flat fee
+        </div>
+      </div>
+    </div>
+
+    <a href="#" class="hero-cta" style="background:var(--os-cyan); color:var(--os-navy);">
+      Get the Free Template →
+    </a>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════
+     FUNNEL ARCHITECTURE
+     ═══════════════════════════════════ -->
+<section class="section funnel-section" id="funnel">
+  <div class="section-header">
+    <div class="s-num">01</div>
+    <div class="s-titles">
+      <div class="s-title">Two Funnels. Two Audiences. One Brand Family.</div>
+      <div class="s-desc">TorqueOps closes retainers. Torque OS generates leads. Each optimized for its ICP.</div>
+    </div>
+  </div>
+
+  <div class="funnel-grid">
+
+    <!-- OPS FUNNEL -->
+    <div class="funnel-col ops-col">
+      <div class="funnel-label ops">TorqueOps — Agency Funnel</div>
+      <div class="funnel-title" style="color:#fff;">The Retainer Path</div>
+      <div class="funnel-sub">torqueops.com · Business cards · Contracts · LinkedIn</div>
+
+      <div class="funnel-items">
+        <div class="funnel-item ops-item">
+          <div class="fi-icon">🤝</div>
+          <div class="fi-content">
+            <div class="fi-title" style="color:#fff;">Entry: Warm Referral / Loom Outreach</div>
+            <div class="fi-desc">Commercial banker intro, trade association, American Operator network, direct Loom video pointing out one specific operational leak</div>
+          </div>
+        </div>
+        <div class="funnel-item ops-item">
+          <div class="fi-icon">📞</div>
+          <div class="fi-content">
+            <div class="fi-title" style="color:#fff;">20-Min Discovery Call</div>
+            <div class="fi-desc">Qualify: revenue, pain level, budget signal. If right fit → propose Diagnostic</div>
+          </div>
+        </div>
+        <div class="funnel-item ops-item">
+          <div class="fi-icon">🔬</div>
+          <div class="fi-content">
+            <div class="fi-title" style="color:#fff;">Torque OS Diagnostic — $3,500</div>
+            <div class="fi-desc">2 weeks. Delivers Profit & Ops Roadmap. 5× guarantee. Natural handoff to retainer.</div>
+          </div>
+        </div>
+        <div class="funnel-item ops-item">
+          <div class="fi-icon">⚙️</div>
+          <div class="fi-content">
+            <div class="fi-title" style="color:#fff;">TorqueOps Retainer — $5K–$15K/mo</div>
+            <div class="fi-desc">Fractional CFO/COO. Weekly flash, monthly deep-dive. AI stack deployed. You are the Equalizer.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="icp-pills">
+        <span class="icp-pill ops">HVAC $3M–$20M</span>
+        <span class="icp-pill ops">Plumbing / Contractors</span>
+        <span class="icp-pill ops">Restoration / Fire & Water</span>
+        <span class="icp-pill ops">Sports Academies</span>
+        <span class="icp-pill ops">Security / Inspection</span>
+        <span class="icp-pill ops">Lite Manufacturing</span>
+      </div>
+
+      <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
+        <span class="domain-pill ops">torqueops.com</span>
+        <span style="font-size:11px;color:#444;">Business cards · Invoices · LinkedIn Company</span>
+      </div>
+    </div>
+
+    <!-- OS FUNNEL -->
+    <div class="funnel-col os-col">
+      <div class="funnel-label os">Torque OS — Product Funnel</div>
+      <div class="funnel-title" style="color:#fff;">The System Path</div>
+      <div class="funnel-sub">gettorqueos.com · Lead magnets · Content · Templates</div>
+
+      <div class="funnel-items">
+        <div class="funnel-item os-item">
+          <div class="fi-icon">📥</div>
+          <div class="fi-content">
+            <div class="fi-title" style="color:#fff;">Entry: Free Lead Magnet</div>
+            <div class="fi-desc">13-Week Cash Flow Template · AI Ops Self-Assessment · "5 Leaks Killing $10M Businesses" PDF</div>
+          </div>
+        </div>
+        <div class="funnel-item os-item">
+          <div class="fi-icon">📊</div>
+          <div class="fi-content">
+            <div class="fi-title" style="color:#fff;">Email Nurture Sequence</div>
+            <div class="fi-desc">7-touch sequence: one specific insight per email, each ending with "want us to find this in your business?"</div>
+          </div>
+        </div>
+        <div class="funnel-item os-item">
+          <div class="fi-icon">⚡</div>
+          <div class="fi-content">
+            <div class="fi-title" style="color:#fff;">Torque OS Diagnostic — $3,500</div>
+            <div class="fi-desc">Same product, different framing. "Install the OS" vs. "request a diagnostic." Flat fee, no commitment required.</div>
+          </div>
+        </div>
+        <div class="funnel-item os-item">
+          <div class="fi-icon">🔄</div>
+          <div class="fi-content">
+            <div class="fi-title" style="color:#fff;">Handoff to TorqueOps Retainer</div>
+            <div class="fi-desc">After Diagnostic delivery: "You can implement this yourself, or TorqueOps executes it for you."</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="icp-pills">
+        <span class="icp-pill os">SaaS $5M–$100M (bootstrapped)</span>
+        <span class="icp-pill os">Marketplace / Tech-Enabled</span>
+        <span class="icp-pill os">Founder-led, no institutional board</span>
+        <span class="icp-pill os">Series A–C scale-ups</span>
+      </div>
+
+      <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
+        <span class="domain-pill os">gettorqueos.com</span>
+        <span style="font-size:11px;color:#333;">Lead pages · Templates · AI tools</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════
+     COLOR SCHEMES
+     ═══════════════════════════════════ -->
+<section class="section color-section" id="colors">
+  <div class="section-header">
+    <div class="s-num">02</div>
+    <div class="s-titles">
+      <div class="s-title">Color Systems — Dual Brand</div>
+      <div class="s-desc">Each scheme shows how TorqueOps and Torque OS differentiate visually while staying cohesive as a brand family.</div>
+    </div>
+  </div>
+
+  <div class="color-grid">
+
+    <!-- SCHEME A: RECOMMENDED -->
+    <div class="color-card recommended">
+      <div class="cc-badge" style="background:#0a0a0a; color:#10B981;">Scheme A — Industrial + Precision &nbsp;<span class="rec-tag">✓ Recommended</span></div>
+      <div class="cc-swatch-row">
+        <div class="cc-swatch" style="background:#0E0E0E;"></div>
+        <div class="cc-swatch" style="background:#E85D1A;"></div>
+        <div class="cc-swatch" style="background:#F59E0B;"></div>
+        <div class="cc-swatch" style="background:#0A1628;"></div>
+        <div class="cc-swatch" style="background:#1B4FD8;"></div>
+        <div class="cc-swatch" style="background:#06B6D4;"></div>
+        <div class="cc-swatch" style="background:#10B981;"></div>
+      </div>
+      <div class="cc-body">
+        <div class="mini-dual">
+          <div class="mini-ops" style="background:#0E0E0E;">
+            <div class="mini-wordmark" style="color:#fff;">TORQUE<span style="color:#E85D1A;">OPS</span></div>
+            <div class="mini-tagline" style="color:#E85D1A;">The Agency · Make Money · Save Money · Get Time Back</div>
+          </div>
+          <div class="mini-os" style="background:#0A1628;">
+            <div class="mini-wordmark" style="color:#fff;">TORQUE<span style="color:#06B6D4;">OS</span></div>
+            <div class="mini-tagline" style="color:#06B6D4;">The System · Install Once. Run Forever.</div>
+          </div>
+          <div class="mini-strip" style="background:#E85D1A;">
+            <div class="mini-strip-text" style="color:#fff; letter-spacing:3px;">MORE PROFIT · LESS CHAOS · MORE TIME</div>
+          </div>
+        </div>
+
+        <div class="palette-grid">
+          <div class="palette-row"><div class="p-dot" style="background:#E85D1A;"></div><div class="p-info"><div class="p-name">Forge Orange — TorqueOps Primary</div><div class="p-role">Action · results · CTA · operator energy · Main Street</div></div></div>
+          <div class="palette-row"><div class="p-dot" style="background:#F59E0B;"></div><div class="p-info"><div class="p-name">Amber — Save Money signal</div><div class="p-role">Cost savings · efficiency wins · warm urgency</div></div></div>
+          <div class="palette-row"><div class="p-dot" style="background:#06B6D4;"></div><div class="p-info"><div class="p-name">Precision Cyan — Torque OS Primary</div><div class="p-role">Systems · AI · technology · the product layer</div></div></div>
+          <div class="palette-row"><div class="p-dot" style="background:#1B4FD8;"></div><div class="p-info"><div class="p-name">Electric Blue — OS Authority</div><div class="p-role">Data · analytics · SaaS founder credibility</div></div></div>
+          <div class="palette-row"><div class="p-dot" style="background:#10B981;"></div><div class="p-info"><div class="p-name">Growth Green — Make Money signal</div><div class="p-role">Profit · positive outcomes · revenue growth</div></div></div>
+          <div class="palette-row"><div class="p-dot" style="background:#0E0E0E;"></div><div class="p-info"><div class="p-name">Near Black — TorqueOps Base</div><div class="p-role">Industrial authority · no-nonsense operator</div></div></div>
+          <div class="palette-row"><div class="p-dot" style="background:#0A1628;"></div><div class="p-info"><div class="p-name">Deep Navy — Torque OS Base</div><div class="p-role">Technical precision · financial rigor · SaaS-native</div></div></div>
+        </div>
+
+        <div class="verdict"><strong>Best for:</strong> Full dual-brand system. Orange = ops/action (Main Street instantly recognizes it). Cyan = systems/tech (SaaS founders read it as modern). The two bases (near-black vs. deep navy) make TorqueOps and Torque OS visually distinct while sharing the accent language. This is the system already in the one-pager — formalized.</div>
+      </div>
+    </div>
+
+    <!-- SCHEME B: MONOCHROME + ACCENT -->
+    <div class="color-card">
+      <div class="cc-badge" style="background:#0a0a0a; color:#F59E0B;">Scheme B — Monochrome + Gold</div>
+      <div class="cc-swatch-row">
+        <div class="cc-swatch" style="background:#111111;"></div>
+        <div class="cc-swatch" style="background:#1C1C1C;"></div>
+        <div class="cc-swatch" style="background:#C9922A;"></div>
+        <div class="cc-swatch" style="background:#D4A017;"></div>
+        <div class="cc-swatch" style="background:#1A7A4A;"></div>
+        <div class="cc-swatch" style="background:#FAFAF8;"></div>
+        <div class="cc-swatch" style="background:#F5F0E8;"></div>
+      </div>
+      <div class="cc-body">
+        <div class="mini-dual">
+          <div class="mini-ops" style="background:#111;">
+            <div class="mini-wordmark" style="color:#fff;">TORQUE<span style="color:#C9922A;">OPS</span></div>
+            <div class="mini-tagline" style="color:#C9922A;">Built for the Owner Who Builds Things</div>
+          </div>
+          <div class="mini-os" style="background:#1a1a1a;">
+            <div class="mini-wordmark" style="color:#fff;">TORQUE<span style="color:#D4A017;">OS</span></div>
+            <div class="mini-tagline" style="color:#D4A017;">The System Behind the Results</div>
+          </div>
+          <div class="mini-strip" style="background:#C9922A;">
+            <div class="mini-strip-text" style="color:#fff; letter-spacing:3px;">MORE PROFIT · LESS CHAOS · MORE TIME</div>
+          </div>
+        </div>
+        <div class="palette-grid">
+          <div class="palette-row"><div class="p-dot" style="background:#C9922A;"></div><div class="p-info"><div class="p-name">Warm Gold — TorqueOps</div><div class="p-role">Value · premium · wealth creation · exit-ready signal</div></div></div>
+          <div class="palette-row"><div class="p-dot" style="background:#D4A017;"></div><div class="p-info"><div class="p-name">Deep Gold — Torque OS</div><div class="p-role">Technical premium · systems that generate returns</div></div></div>
+          <div class="palette-row"><div class="p-dot" style="background:#1A7A4A;"></div><div class="p-info"><div class="p-name">Forest Green</div><div class="p-role">Make money · profit signal · growth</div></div></div>
+          <div class="palette-row"><div class="p-dot" style="background:#F5F0E8;"></div><div class="p-info"><div class="p-name">Warm Cream</div><div class="p-role">Print background — approachable, not cold-tech</div></div></div>
+        </div>
+        <div class="verdict"><strong>Best for:</strong> $10M–$50M exit-prep clients and the SaaS founder who wants a premium advisor, not a scrappy operator. Reads like boutique M&A advisory. Risk: slightly less accessible for the Main Street HVAC owner who wants a no-nonsense partner. Works well if your average deal size skews $10K+/month.</div>
+      </div>
+    </div>
+
+    <!-- SCHEME C: HIGH-CONTRAST SPLIT -->
+    <div class="color-card">
+      <div class="cc-badge" style="background:#0a0a0a; color:#888;">Scheme C — High Contrast Split</div>
+      <div class="cc-swatch-row">
+        <div class="cc-swatch" style="background:#0E0E0E;"></div>
+        <div class="cc-swatch" style="background:#E85D1A;"></div>
+        <div class="cc-swatch" style="background:#F5F0E8;"></div>
+        <div class="cc-swatch" style="background:#FFFFFF;"></div>
+        <div class="cc-swatch" style="background:#0A1628;"></div>
+        <div class="cc-swatch" style="background:#22C55E;"></div>
+        <div class="cc-swatch" style="background:#111827;"></div>
+      </div>
+      <div class="cc-body">
+        <div class="mini-dual">
+          <div class="mini-ops" style="background:#0E0E0E;">
+            <div class="mini-wordmark" style="color:#fff;">TORQUE<span style="color:#E85D1A;">OPS</span></div>
+            <div class="mini-tagline" style="color:rgba(255,255,255,0.4);">Fractional CFO · COO · Main Street</div>
+          </div>
+          <div class="mini-os" style="background:#F5F0E8;">
+            <div class="mini-wordmark" style="color:#0A1628;">TORQUE<span style="color:#22C55E;">OS</span></div>
+            <div class="mini-tagline" style="color:#22C55E;">AI-Powered · SaaS-Ready · Install the OS</div>
+          </div>
+          <div class="mini-strip" style="background:#0A1628;">
+            <div class="mini-strip-text" style="color:#22C55E; letter-spacing:3px;">SILICON VALLEY SYSTEMS · MAIN STREET RESULTS</div>
+          </div>
+        </div>
+        <div class="palette-grid">
+          <div class="palette-row"><div class="p-dot" style="background:#E85D1A;"></div><div class="p-info"><div class="p-name">Forge Orange — TorqueOps</div><div class="p-role">Dark side: industrial, operator, action</div></div></div>
+          <div class="palette-row"><div class="p-dot" style="background:#22C55E;"></div><div class="p-info"><div class="p-name">Electric Green — Torque OS</div><div class="p-role">Light side: growth, AI, modern, profit</div></div></div>
+          <div class="palette-row"><div class="p-dot" style="background:#F5F0E8;"></div><div class="p-info"><div class="p-name">Warm Cream — OS background</div><div class="p-role">Product landing pages — clean and approachable</div></div></div>
+          <div class="palette-row"><div class="p-dot" style="background:#0A1628;"></div><div class="p-info"><div class="p-name">Deep Navy — shared authority</div><div class="p-role">Shared headline color across both brands</div></div></div>
+        </div>
+        <div class="verdict"><strong>Best for:</strong> Maximum visual differentiation between the two brands — dark/industrial for TorqueOps, light/modern for Torque OS. Strong when the two landing pages (torqueops.com vs. gettorqueos.com) need to feel clearly distinct to each ICP. Most aggressive option — commits fully to the split identity.</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════
+     MESSAGING STACK
+     ═══════════════════════════════════ -->
+<section class="section msg-section" id="messaging">
+  <div class="section-header">
+    <div class="s-num">03</div>
+    <div class="s-titles">
+      <div class="s-title">Messaging Stack — ICP by ICP</div>
+      <div class="s-desc">Same offer. Different language. Each message calibrated to how that buyer thinks.</div>
+    </div>
+  </div>
+
+  <div class="msg-grid">
+
+    <!-- MAIN STREET / TORQUEOPS -->
+    <div class="msg-card">
+      <div class="msg-header" style="background:#0D0800;">
+        <div class="msg-header-label" style="color:var(--ops-orange);">TorqueOps — Main Street Trades ($3M–$20M)</div>
+        <div class="msg-headline" style="color:#fff;">You're doing the work.<br>You're not keeping the money.</div>
+      </div>
+      <div class="msg-body">
+        <div class="msg-hook" style="color:var(--ops-orange);">The hook that opens the door:</div>
+        <div class="msg-copy">
+          "Most HVAC owners doing $8M can't explain why their bank balance is always tight. Last month I found $47,000 in annual profit sitting inside three problems a $5M plumbing company had been living with for years — invoice lag, unbilled materials, and two service categories priced 14% below their real cost. Two weeks. One flat fee. You keep the roadmap no matter what. If we don't find 5× our fee in recoverable value, you owe nothing beyond the diagnostic."
+        </div>
+        <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px;">
+          <span style="padding:4px 10px;background:#1a0900;border:1px solid #2a1200;border-radius:4px;font-size:11px;color:var(--ops-orange);font-weight:700;">Make Money → Green metric color</span>
+          <span style="padding:4px 10px;background:#1a0900;border:1px solid #2a1200;border-radius:4px;font-size:11px;color:var(--ops-amber);font-weight:700;">Save Money → Amber metric color</span>
+          <span style="padding:4px 10px;background:#1a0900;border:1px solid #2a1200;border-radius:4px;font-size:11px;color:#888;font-weight:700;">Get Time Back → White metric color</span>
+        </div>
+        <div style="font-size:11px;font-weight:700;letter-spacing:2px;color:#333;text-transform:uppercase;margin-bottom:8px;">Tone markers:</div>
+        <div style="font-size:12px;color:#555;line-height:1.7;">
+          Plain English · No jargon · Specific dollar numbers · Owner-to-owner energy · "You" not "your business" · Short sentences · The gear metaphor (Low Gear / Overdrive) works here
+        </div>
+        <a href="#" class="msg-cta" style="background:var(--ops-orange);color:#fff;margin-top:14px;">
+          Request a Diagnostic →
+        </a>
+      </div>
+    </div>
+
+    <!-- SAAS / TORQUE OS -->
+    <div class="msg-card">
+      <div class="msg-header" style="background:#030C1A;">
+        <div class="msg-header-label" style="color:var(--os-cyan);">Torque OS — SaaS / Founder-Led ($5M–$100M)</div>
+        <div class="msg-headline" style="color:#fff;">Your tech is scaling.<br>Your back-office is legacy drag.</div>
+      </div>
+      <div class="msg-body">
+        <div class="msg-hook" style="color:var(--os-cyan);">The hook that opens the door:</div>
+        <div class="msg-copy">
+          "You've built the product. You have product-market fit. But your finance stack is still the same spreadsheets you were running at $2M. Torque OS is the operating framework we install into $5M–$100M bootstrapped companies to professionalize the back-office — the 13-week cash model, AI-powered ops audit, and the reporting architecture your CFO will thank you for when you go to raise or exit. Flat fee to start. No commitment beyond the diagnostic."
+        </div>
+        <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px;">
+          <span style="padding:4px 10px;background:#001020;border:1px solid #001a30;border-radius:4px;font-size:11px;color:var(--os-cyan);font-weight:700;font-family:'JetBrains Mono',monospace;">System Install framing</span>
+          <span style="padding:4px 10px;background:#001020;border:1px solid #001a30;border-radius:4px;font-size:11px;color:var(--os-green);font-weight:700;font-family:'JetBrains Mono',monospace;">ARR / Valuation language</span>
+          <span style="padding:4px 10px;background:#001020;border:1px solid #001a30;border-radius:4px;font-size:11px;color:#555;font-weight:700;font-family:'JetBrains Mono',monospace;">Exit / Fundraise signal</span>
+        </div>
+        <div style="font-size:11px;font-weight:700;letter-spacing:2px;color:#1a2a1a;text-transform:uppercase;margin-bottom:8px;">Tone markers:</div>
+        <div style="font-size:12px;color:#555;line-height:1.7;">
+          Technical framing · "OS" / "install" / "framework" language · Rule of 40 · ARR growth · Exit readiness · "Silicon Valley Systems · Main Street Results" tagline lives here · JetBrains Mono for system/code elements
+        </div>
+        <a href="#" class="msg-cta" style="background:var(--os-cyan);color:var(--os-navy);margin-top:14px;">
+          Get Torque OS Diagnostic →
+        </a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════
+     BRAND ARCHITECTURE DIAGRAM
+     ═══════════════════════════════════ -->
+<section class="section arch-section" id="architecture">
+  <div class="section-header">
+    <div class="s-num">04</div>
+    <div class="s-titles">
+      <div class="s-title">Brand Architecture & Domain Strategy</div>
+      <div class="s-desc">How TorqueOps and Torque OS fit together as one brand family across two funnels.</div>
+    </div>
+  </div>
+
+  <div class="arch-diagram">
+    <div class="arch-top">
+
+      <!-- TORQUEOPS COL -->
+      <div class="arch-col ops-a">
+        <div class="arch-brand" style="color:#fff;">TORQUE<span style="color:var(--ops-orange);">OPS</span></div>
+        <div class="arch-role" style="color:var(--ops-orange);">The Agency · The Partner · The Equalizer</div>
+        <div class="arch-domain" style="background:rgba(232,93,26,0.1); border:1px solid rgba(232,93,26,0.3); color:var(--ops-orange);">torqueops.com</div>
+        <div class="arch-items">
+          <div class="arch-item" style="color:#666;">Business cards & email signature</div>
+          <div class="arch-item" style="color:#666;">LinkedIn company page & personal profile</div>
+          <div class="arch-item" style="color:#666;">Engagement agreements & invoices</div>
+          <div class="arch-item" style="color:#666;">Retainer pitch deck & proposals</div>
+          <div class="arch-item" style="color:#666;">Main Street / trades outreach</div>
+          <div class="arch-item" style="color:#666;">Warm referral & Loom video campaigns</div>
+          <div class="arch-item" style="color:#666;">American Operator network partnerships</div>
+        </div>
+      </div>
+
+      <!-- TORQUE OS COL -->
+      <div class="arch-col">
+        <div class="arch-brand" style="color:#fff;">TORQUE<span style="color:var(--os-cyan);">OS</span></div>
+        <div class="arch-role" style="color:var(--os-cyan);">The System · The Framework · The Product</div>
+        <div class="arch-domain" style="background:rgba(6,182,212,0.1); border:1px solid rgba(6,182,212,0.3); color:var(--os-cyan);">gettorqueos.com</div>
+        <div class="arch-items">
+          <div class="arch-item" style="color:#666;">Lead magnet landing pages</div>
+          <div class="arch-item" style="color:#666;">Free 13-Week Cash Flow Template</div>
+          <div class="arch-item" style="color:#666;">AI Ops Self-Assessment tool</div>
+          <div class="arch-item" style="color:#666;">Content downloads & whitepapers</div>
+          <div class="arch-item" style="color:#666;">SaaS / founder-led outreach</div>
+          <div class="arch-item" style="color:#666;">LinkedIn content & thought leadership</div>
+          <div class="arch-item" style="color:#666;">Email nurture sequences</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- GEAR FLOW -->
+    <div class="arch-divider">
+      <div class="arch-divider-inner">The Gear Framework — Applies to Both Funnels</div>
+    </div>
+
+    <div class="arch-bottom">
+      <div class="arch-bottom-title">Revenue Progression</div>
+      <div class="gear-flow">
+        <div class="gear-stage" style="background:rgba(232,93,26,0.06); border-radius:8px; margin-right:24px;">
+          <div class="gs-brand" style="color:var(--os-cyan);">Torque OS</div>
+          <div class="gs-gear" style="color:rgba(255,255,255,0.3);">LOW GEAR</div>
+          <div class="gs-name" style="color:#fff;">The Diagnostic</div>
+          <div class="gs-price" style="color:var(--ops-orange);">$3,500 flat</div>
+        </div>
+        <div class="gear-stage" style="background:rgba(245,158,11,0.06); border-radius:8px; margin-right:24px;">
+          <div class="gs-brand" style="color:var(--ops-orange);">TorqueOps</div>
+          <div class="gs-gear" style="color:rgba(255,255,255,0.3);">HIGH GEAR</div>
+          <div class="gs-name" style="color:#fff;">The Retainer</div>
+          <div class="gs-price" style="color:var(--ops-amber);">$5K–$15K/mo</div>
+        </div>
+        <div class="gear-stage" style="background:rgba(16,185,129,0.06); border-radius:8px;">
+          <div class="gs-brand" style="color:var(--ops-orange);">TorqueOps</div>
+          <div class="gs-gear" style="color:rgba(255,255,255,0.3);">OVERDRIVE</div>
+          <div class="gs-name" style="color:#fff;">Exit / Freedom</div>
+          <div class="gs-price" style="color:#10B981;">Custom + success fee</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════
+     APPLIED MOCKUPS
+     ═══════════════════════════════════ -->
+<section class="section mock-section" id="applied">
+  <div class="section-header">
+    <div class="s-num">05</div>
+    <div class="s-titles">
+      <div class="s-title">Applied Mockups — Scheme A</div>
+      <div class="s-desc">LinkedIn banners, business cards, and email headers for both brands.</div>
+    </div>
+  </div>
+
+  <div class="mock-grid">
+
+    <!-- TorqueOps LinkedIn Banner -->
+    <div class="mock-card" style="grid-column:1/-1;">
+      <div class="mock-label">TorqueOps — LinkedIn Banner (torqueops.com)</div>
+      <div class="li-banner-ops">
+        <div style="position:relative;z-index:1;">
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:8px;">
+            <div style="width:44px;height:44px;background:var(--ops-orange);border-radius:8px;display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:26px;color:#fff;">T</div>
+            <div style="font-family:'Bebas Neue',sans-serif;font-size:44px;letter-spacing:2px;color:#fff;line-height:1;">TORQUE<span style="color:var(--ops-orange);">OPS</span></div>
+          </div>
+          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:13px;letter-spacing:2px;color:rgba(255,255,255,0.45);text-transform:uppercase;margin-bottom:8px;">Fractional CFO & COO · Field Services · Growth-Stage Companies</div>
+          <div style="display:flex;gap:20px;">
+            <span style="font-size:12px;font-weight:700;color:#10B981;">● Make Money</span>
+            <span style="font-size:12px;font-weight:700;color:var(--ops-amber);">● Save Money</span>
+            <span style="font-size:12px;font-weight:700;color:rgba(255,255,255,0.4);">● Get Time Back</span>
+          </div>
+        </div>
+        <div style="position:relative;z-index:1;text-align:right;">
+          <div style="font-family:'Bebas Neue',sans-serif;font-size:52px;color:var(--ops-orange);line-height:1;">5×</div>
+          <div style="font-size:10px;font-weight:700;color:rgba(255,255,255,0.3);letter-spacing:1px;text-transform:uppercase;">ROI Guarantee</div>
+          <div style="width:48px;height:2px;background:var(--ops-orange);margin:8px 0 8px auto;"></div>
+          <div style="font-size:11px;color:rgba(255,255,255,0.25);line-height:1.4;">torqueops.com<br>linkedin.com/in/analyticshacker</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Torque OS LinkedIn Banner -->
+    <div class="mock-card" style="grid-column:1/-1;">
+      <div class="mock-label">Torque OS — LinkedIn / Lead Gen Banner (gettorqueos.com)</div>
+      <div class="li-banner-os">
+        <div style="position:relative;z-index:1;">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:600;color:rgba(6,182,212,0.5);letter-spacing:2px;margin-bottom:8px;">INSTALL_THE_OS</div>
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:8px;">
+            <div style="width:44px;height:44px;background:var(--os-blue);border-radius:8px;display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:26px;color:#fff;">T</div>
+            <div style="font-family:'Bebas Neue',sans-serif;font-size:44px;letter-spacing:2px;color:#fff;line-height:1;">TORQUE<span style="color:var(--os-cyan);">OS</span></div>
+          </div>
+          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:13px;letter-spacing:2px;color:rgba(255,255,255,0.4);text-transform:uppercase;">Silicon Valley Systems · Main Street Results · No Fluff</div>
+        </div>
+        <div style="position:relative;z-index:1;text-align:right;">
+          <div style="display:flex;flex-direction:column;gap:8px;align-items:flex-end;">
+            <span style="padding:6px 14px;background:rgba(6,182,212,0.12);border:1px solid rgba(6,182,212,0.3);border-radius:6px;font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--os-cyan);">Torque 13™ Forecast</span>
+            <span style="padding:6px 14px;background:rgba(16,185,129,0.12);border:1px solid rgba(16,185,129,0.3);border-radius:6px;font-family:'JetBrains Mono',monospace;font-size:12px;color:#10B981;">AI Ops Audit → Free</span>
+            <span style="font-size:11px;color:rgba(255,255,255,0.25);">gettorqueos.com</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Business Cards -->
+    <div class="mock-card">
+      <div class="mock-label">TorqueOps — Business Card Front</div>
+      <div class="biz-card-ops">
+        <div style="position:relative;z-index:1;">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:2px;">
+            <div style="width:30px;height:30px;background:var(--ops-orange);border-radius:6px;display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:18px;color:#fff;flex-shrink:0;">T</div>
+            <div style="font-family:'Bebas Neue',sans-serif;font-size:26px;letter-spacing:2px;color:#fff;">TORQUE<span style="color:var(--ops-orange);">OPS</span></div>
+          </div>
+          <div style="font-family:'Barlow Condensed',sans-serif;font-size:9px;font-weight:700;letter-spacing:2px;color:rgba(255,255,255,0.3);text-transform:uppercase;margin-left:40px;">Fractional CFO · COO · Field Services</div>
+        </div>
+        <div>
+          <div style="font-size:18px;font-weight:800;color:#fff;">Dharmesh Patel, MBA</div>
+          <div style="font-size:10px;font-weight:700;color:var(--ops-orange);letter-spacing:1px;text-transform:uppercase;margin-top:2px;">Founder & Principal · The Equalizer</div>
+          <div style="margin-top:10px;font-size:10px;color:rgba(255,255,255,0.3);line-height:1.8;font-family:'JetBrains Mono',monospace;">torqueops.com<br>in/analyticshacker<br>meshpatel74@gmail.com</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mock-card">
+      <div class="mock-label">Torque OS — Product Card / Leave-Behind</div>
+      <div class="biz-card-os">
+        <div style="position:relative;z-index:1;">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:2px;">
+            <div style="width:30px;height:30px;background:var(--os-blue);border-radius:6px;display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:18px;color:#fff;flex-shrink:0;">T</div>
+            <div style="font-family:'Bebas Neue',sans-serif;font-size:26px;letter-spacing:2px;color:#fff;">TORQUE<span style="color:var(--os-cyan);">OS</span></div>
+          </div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--os-cyan);opacity:0.5;letter-spacing:1px;margin-left:40px;">// install_the_operating_system</div>
+        </div>
+        <div>
+          <div style="font-size:14px;font-weight:700;color:#fff;margin-bottom:6px;">Free Resources</div>
+          <div style="display:flex;flex-direction:column;gap:4px;">
+            <div style="font-size:11px;color:rgba(255,255,255,0.4);display:flex;align-items:center;gap:6px;"><span style="color:var(--os-green);">→</span> 13-Week Cash Forecast Template</div>
+            <div style="font-size:11px;color:rgba(255,255,255,0.4);display:flex;align-items:center;gap:6px;"><span style="color:var(--os-cyan);">→</span> AI Ops Self-Assessment</div>
+            <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:rgba(255,255,255,0.2);margin-top:4px;">gettorqueos.com</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Email Headers -->
+    <div class="mock-card">
+      <div class="mock-label">TorqueOps — Cold Outreach Email (Main Street)</div>
+      <div class="email-mock">
+        <div class="email-from">From: Dharmesh Patel &lt;dharmesh@torqueops.com&gt;</div>
+        <div class="email-subj">Found $47K in hidden profit for an HVAC company like yours</div>
+        <div class="email-content">
+          <div class="email-logo-row">
+            <div class="email-logo-icon" style="background:#E85D1A;">T</div>
+            <div class="email-logo-text">TORQUE<span style="color:#E85D1A;">OPS</span></div>
+          </div>
+          <div class="email-tag-line">Fractional CFO & COO · Field Services · torqueops.com</div>
+          <div class="email-body-text">
+            Hi [Owner],<br><br>
+            I work with HVAC and field service companies doing $3M–$15M. Last month a client doing <strong>$8.2M in revenue</strong> couldn't explain why their bank balance was always tight despite strong sales.<br><br>
+            In two weeks we found <strong>$47K in annual recoverable profit</strong> — invoice lag, unbilled materials, and two service categories priced 14% below true cost.<br><br>
+            I built a free <strong>13-Week Cash Flow Template</strong> specifically for field services — shows your exact cash position week by week, integrates with Jobber and QBO.
+          </div>
+          <a href="#" class="email-cta-btn" style="background:#E85D1A;color:#fff;">Get the Free Template →</a>
+          <div style="margin-top:16px;font-size:11px;color:#aaa;line-height:1.7;">Dharmesh Patel, MBA · TorqueOps<br>torqueops.com · linkedin.com/in/analyticshacker</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mock-card">
+      <div class="mock-label">Torque OS — SaaS Founder Outreach Email</div>
+      <div class="email-mock">
+        <div class="email-from">From: Dharmesh Patel &lt;dharmesh@gettorqueos.com&gt;</div>
+        <div class="email-subj">Your tech stack is scaling. Your back-office isn't.</div>
+        <div class="email-content">
+          <div class="email-logo-row">
+            <div class="email-logo-icon" style="background:#1B4FD8;">T</div>
+            <div class="email-logo-text" style="color:#0A1628;">TORQUE<span style="color:#06B6D4;">OS</span></div>
+          </div>
+          <div class="email-tag-line" style="color:#06B6D4;">Silicon Valley Systems · Main Street Results · gettorqueos.com</div>
+          <div class="email-body-text">
+            Hi [Founder],<br><br>
+            You built product-market fit. But your finance stack is still the <strong>same spreadsheets you were running at $2M ARR</strong>. Meanwhile your burn multiple is climbing and your board wants answers.<br><br>
+            Torque OS is the operating framework we install into $5M–$100M bootstrapped companies — <strong>13-week cash model, AI-powered ops audit, and the reporting architecture</strong> your CFO will thank you for at your next raise.<br><br>
+            Flat fee to start. Keep the roadmap regardless. 5× ROI guarantee or no fee.
+          </div>
+          <a href="#" class="email-cta-btn" style="background:#1B4FD8;color:#fff;">Install Torque OS →</a>
+          <div style="margin-top:16px;font-size:11px;color:#aaa;line-height:1.7;">Dharmesh Patel, MBA · Torque OS<br>gettorqueos.com · linkedin.com/in/analyticshacker</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════
+     COMPARE TABLE
+     ═══════════════════════════════════ -->
+<section class="section" style="background:#040404;" id="compare">
+  <div class="section-header">
+    <div class="s-num">06</div>
+    <div class="s-titles">
+      <div class="s-title">Side-by-Side: TorqueOps vs. Torque OS</div>
+      <div class="s-desc">Quick reference for when to lead with which brand across every touchpoint.</div>
+    </div>
+  </div>
+
+  <div style="background:#0a0a0a;border-radius:14px;overflow:hidden;border:1px solid #1a1a1a;">
+    <table class="compare-table">
+      <thead>
+        <tr>
+          <th>Touchpoint</th>
+          <th style="color:var(--ops-orange);">TorqueOps</th>
+          <th style="color:var(--os-cyan);">Torque OS</th>
+          <th>Why</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Primary domain</td><td class="td-ops">torqueops.com</td><td class="td-os">gettorqueos.com</td><td>Separate landing experiences per ICP</td></tr>
+        <tr><td>LinkedIn headline</td><td class="td-ops">Founder, TorqueOps</td><td class="td-os">Creator, Torque OS</td><td>Personal brand anchored to agency</td></tr>
+        <tr><td>Business card</td><td class="td-ops">✓ Primary</td><td class="td-os">Product leave-behind</td><td>Agency card for in-person; OS card at trade events</td></tr>
+        <tr><td>Email signature</td><td class="td-ops">dharmesh@torqueops.com</td><td class="td-os">gettorqueos.com link</td><td>Agency email for all outreach</td></tr>
+        <tr><td>Invoices & contracts</td><td class="td-ops">✓ Always TorqueOps</td><td class="td-os">—</td><td>Legal entity is the agency</td></tr>
+        <tr><td>Lead magnets</td><td class="td-ops">—</td><td class="td-os">✓ Always Torque OS</td><td>System framing lowers barrier to entry</td></tr>
+        <tr><td>Cold outreach — Main St.</td><td class="td-ops">✓ TorqueOps voice</td><td class="td-shared">Both — free template hook</td><td>Ops language, system delivery</td></tr>
+        <tr><td>Cold outreach — SaaS</td><td class="td-shared">Both — Diagnostic pitch</td><td class="td-os">✓ Torque OS hook</td><td>OS framing resonates with technical founders</td></tr>
+        <tr><td>Retainer pitch deck</td><td class="td-ops">✓ TorqueOps brand</td><td class="td-os">Torque OS deliverables slide</td><td>Firm pitches the retainer; system is what they get</td></tr>
+        <tr><td>Content / LinkedIn posts</td><td class="td-ops">Author is TorqueOps</td><td class="td-os">Frameworks tagged Torque OS</td><td>Builds both brands simultaneously</td></tr>
+        <tr><td>Community / SMB platform</td><td class="td-ops">—</td><td class="td-os">✓ Torque OS community</td><td>Product brand scales beyond your hours</td></tr>
+        <tr><td>Exit advisory pitch</td><td class="td-ops">✓ TorqueOps Overdrive</td><td class="td-os">—</td><td>Exit work is the highest-trust relationship</td></tr>
+        <tr><td>Color primary</td><td class="td-ops">Forge Orange #E85D1A</td><td class="td-os">Precision Cyan #06B6D4</td><td>Instantly visually distinct within shared family</td></tr>
+        <tr><td>Base background</td><td class="td-ops">Near Black #0E0E0E</td><td class="td-os">Deep Navy #0A1628</td><td>Industrial vs. technical read</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-brand">
+    <span class="ops-part">TORQUE</span><span class="ops-part">OPS</span>
+    <span style="color:#222;margin:0 8px;">×</span>
+    <span class="os-part">TORQUE</span><span class="os-part">OS</span>
+  </div>
+  <div class="footer-center">Brand System v1.0 · April 2026 · Dharmesh Patel, MBA</div>
+  <div class="footer-right">
+    <div style="color:#555;margin-bottom:4px;">Register today:</div>
+    <div style="color:var(--ops-orange);font-family:'JetBrains Mono',monospace;font-size:11px;">torqueops.com</div>
+    <div style="color:var(--os-cyan);font-family:'JetBrains Mono',monospace;font-size:11px;">gettorqueos.com</div>
+    <div style="color:#333;font-family:'JetBrains Mono',monospace;font-size:11px;">torqueos.io (defensive)</div>
+  </div>
+</footer>
+
+</body>
+</html>
