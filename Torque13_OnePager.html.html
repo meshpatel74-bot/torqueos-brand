@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Torque 13 Forecast — TorqueOps</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@400;500;600;700;800;900&family=Barlow+Condensed:wght@600;700;800;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#0A1628;--blue:#1B4FD8;--cyan:#06B6D4;--green:#10B981;
+  --orange:#E85D1A;--amber:#F59E0B;--red:#DC2626;
+  --white:#FFFFFF;--dark:#080808;--slate:#111827;
+  --gray:#6B7280;--light:#F1F5F9;--cream:#F8F4EE;
+}
+body{font-family:'Barlow',sans-serif;background:var(--dark);color:#e2e8f0;line-height:1.6}
+.page{max-width:920px;margin:0 auto;background:var(--slate)}
+
+/* ── COVER ── */
+.cover{background:linear-gradient(135deg,#0a0400 0%,#0E0E0E 50%,#1a0800 100%);padding:0;min-height:340px;position:relative;overflow:hidden}
+.cover-grid{display:grid;grid-template-columns:1fr 300px;min-height:340px}
+.cover-left{padding:52px 48px;position:relative;z-index:2}
+.cover-left::after{content:'13';font-family:'Bebas Neue',sans-serif;font-size:240px;position:absolute;color:rgba(232,93,26,0.05);line-height:1;right:-20px;top:-20px;pointer-events:none}
+.cover-eyebrow{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:11px;letter-spacing:5px;text-transform:uppercase;color:var(--orange);margin-bottom:16px;display:flex;align-items:center;gap:10px}
+.cover-eyebrow::before{content:'';width:32px;height:2px;background:var(--orange)}
+.cover-h1{font-family:'Bebas Neue',sans-serif;font-size:68px;line-height:.88;letter-spacing:2px;color:var(--white);margin-bottom:10px}
+.cover-h1 .accent{color:var(--orange)}
+.cover-h1 .sub{font-size:32px;color:rgba(255,255,255,.45);display:block;margin-top:6px;letter-spacing:3px}
+.cover-tagline{font-size:15px;color:rgba(255,255,255,.6);max-width:380px;line-height:1.65;margin-bottom:24px}
+.badges{display:flex;gap:8px;flex-wrap:wrap}
+.badge{padding:5px 13px;border-radius:20px;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:11px;letter-spacing:1px;text-transform:uppercase}
+.badge.orange{background:rgba(232,93,26,.15);border:1px solid rgba(232,93,26,.3);color:var(--orange)}
+.badge.green{background:rgba(16,185,129,.15);border:1px solid rgba(16,185,129,.3);color:var(--green)}
+.badge.amber{background:rgba(245,158,11,.15);border:1px solid rgba(245,158,11,.3);color:var(--amber)}
+
+/* Cover right — mini 13-week grid */
+.cover-right{display:flex;flex-direction:column;justify-content:center;align-items:center;background:rgba(232,93,26,.04);border-left:1px solid rgba(232,93,26,.1);padding:36px 28px;gap:16px}
+.mini-label{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:rgba(232,93,26,.6);margin-bottom:4px;text-align:center}
+.week-grid-mini{display:grid;grid-template-columns:repeat(13,1fr);gap:3px;width:100%}
+.wk-bar{height:40px;border-radius:3px;display:flex;align-items:flex-end;justify-content:center;padding-bottom:4px}
+.wk-num{font-family:'Bebas Neue',sans-serif;font-size:10px;color:rgba(255,255,255,.5)}
+.legend-row{display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
+.leg-item{display:flex;align-items:center;gap:5px;font-size:9px;font-weight:700;color:rgba(255,255,255,.4);letter-spacing:.5px}
+.leg-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.stat-cards{display:flex;flex-direction:column;gap:10px;width:100%}
+.stat-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:8px;padding:12px 14px;text-align:center}
+.stat-num{font-family:'Bebas Neue',sans-serif;font-size:28px;line-height:1}
+.stat-lbl{font-size:9px;font-weight:700;color:rgba(255,255,255,.35);letter-spacing:1px;text-transform:uppercase;margin-top:2px}
+
+.cover-stripe{height:4px;background:linear-gradient(90deg,var(--orange),var(--amber),var(--green))}
+
+/* ── ALERT BANNER ── */
+.alert-banner{background:rgba(232,93,26,.1);border-left:4px solid var(--orange);padding:16px 40px;display:flex;align-items:center;gap:14px}
+.ab-icon{font-size:22px;flex-shrink:0}
+.ab-text{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:17px;color:rgba(255,255,255,.9);letter-spacing:.3px;line-height:1.4}
+
+/* ── BODY ── */
+.body{padding:44px 48px;background:var(--slate)}
+.section{margin-bottom:48px}
+.sec-label{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:10px;letter-spacing:4px;text-transform:uppercase;color:var(--orange);margin-bottom:10px;display:flex;align-items:center;gap:10px}
+.sec-label::after{content:'';flex:1;height:1px;background:rgba(232,93,26,.2)}
+h2{font-family:'Bebas Neue',sans-serif;font-size:38px;color:var(--white);letter-spacing:1px;margin-bottom:8px;line-height:1}
+p{font-size:14px;color:#94a3b8;line-height:1.8;margin-bottom:12px}
+strong{color:#e2e8f0}
+
+/* ── THE 5 THINGS ── */
+.five-grid{display:flex;flex-direction:column;gap:3px;margin:24px 0}
+.five-item{display:grid;grid-template-columns:56px 1fr;border-radius:8px;overflow:hidden}
+.five-num{display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:28px;line-height:1;padding:16px 12px}
+.five-body{padding:14px 18px;display:flex;flex-direction:column;justify-content:center}
+.five-title{font-weight:800;font-size:14px;margin-bottom:3px}
+.five-desc{font-size:12px;opacity:.6;line-height:1.5}
+
+/* ── AR WATERFALL ── */
+.waterfall{margin:20px 0}
+.wf-row{display:flex;align-items:center;gap:0;margin-bottom:4px}
+.wf-label{width:190px;font-size:12px;font-weight:600;color:#94a3b8;flex-shrink:0}
+.wf-bar-wrap{flex:1;background:rgba(255,255,255,.04);border-radius:0 6px 6px 0;overflow:hidden}
+.wf-bar{height:28px;display:flex;align-items:center;padding-left:12px;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:11px;color:white;letter-spacing:.5px;border-radius:0 6px 6px 0}
+.wf-pct{width:42px;text-align:right;font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:600;padding-left:8px}
+
+/* ── TEMPLATE FEATURES ── */
+.features-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:20px 0}
+.feat{display:flex;align-items:flex-start;gap:10px;background:rgba(255,255,255,.03);border-radius:8px;padding:12px 14px;border:1px solid rgba(255,255,255,.06)}
+.feat-check{color:var(--green);font-weight:900;flex-shrink:0;font-size:14px;margin-top:1px}
+.feat-text{}
+.feat-title{font-weight:800;font-size:13px;color:rgba(255,255,255,.9);margin-bottom:2px}
+.feat-sub{font-size:11px;color:#64748b;line-height:1.4}
+
+/* ── 13-WEEK VISUAL EXPLAINER ── */
+.week-explainer{background:rgba(232,93,26,.04);border:1px solid rgba(232,93,26,.12);border-radius:12px;padding:24px;margin:20px 0}
+.we-title{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--orange);margin-bottom:16px;opacity:.8}
+.week-grid-full{display:grid;grid-template-columns:repeat(13,1fr);gap:4px;margin-bottom:12px}
+.wk-full{display:flex;flex-direction:column;align-items:center;gap:3px}
+.wk-bar-full{width:100%;border-radius:3px}
+.wk-n{font-family:'Bebas Neue',sans-serif;font-size:11px;color:rgba(255,255,255,.4)}
+.week-key{display:flex;gap:20px;justify-content:center;flex-wrap:wrap}
+.wk-key-item{display:flex;align-items:center;gap:6px;font-size:11px;font-weight:700;color:rgba(255,255,255,.5)}
+.wk-swatch{width:12px;height:12px;border-radius:3px;flex-shrink:0}
+
+/* ── CALLOUT ── */
+.callout{border-radius:10px;overflow:hidden;margin:16px 0;display:grid;grid-template-columns:auto 1fr}
+.callout-bar{width:4px}
+.callout-inner{padding:14px 18px}
+.callout-inner p{margin:0;font-size:13.5px}
+
+/* ── GEAR STAIRCASE ── */
+.staircase{display:flex;flex-direction:column;gap:3px;margin:20px 0}
+.stair{display:grid;grid-template-columns:80px 1fr auto;border-radius:8px;overflow:hidden}
+.stair-gear-box{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:14px 10px;text-align:center}
+.sg-label{font-family:'Bebas Neue',sans-serif;font-size:11px;letter-spacing:2px;opacity:.7}
+.sg-gear{font-family:'Bebas Neue',sans-serif;font-size:14px;letter-spacing:1px}
+.stair-body{padding:14px 18px}
+.sb-name{font-weight:800;font-size:14px;margin-bottom:2px}
+.sb-tagline{font-size:12px;font-weight:600;opacity:.7;margin-bottom:4px}
+.sb-desc{font-size:12px;opacity:.55;line-height:1.5}
+.stair-price{display:flex;flex-direction:column;align-items:flex-end;justify-content:center;padding:14px 18px;text-align:right}
+.sp-num{font-family:'Bebas Neue',sans-serif;font-size:20px;line-height:1}
+.sp-lbl{font-size:10px;opacity:.4;margin-top:2px}
+
+/* ── GUARANTEE ── */
+.guarantee{background:linear-gradient(135deg,rgba(10,22,40,.9),rgba(232,93,26,.08));border:1px solid rgba(232,93,26,.2);border-radius:14px;padding:28px 32px;margin:28px 0;display:grid;grid-template-columns:auto 1fr;gap:20px;align-items:center}
+.g-num{font-family:'Bebas Neue',sans-serif;font-size:72px;color:var(--orange);line-height:1}
+.g-title{font-family:'Bebas Neue',sans-serif;font-size:26px;color:var(--white);letter-spacing:1px;margin-bottom:6px}
+.g-desc{font-size:13px;color:#94a3b8;line-height:1.7}
+.g-desc strong{color:var(--orange)}
+
+/* ── CTA ── */
+.cta{background:var(--orange);border-radius:12px;padding:28px 32px;margin:28px 0;display:grid;grid-template-columns:1fr auto;gap:24px;align-items:center}
+.cta h3{font-family:'Bebas Neue',sans-serif;font-size:28px;color:var(--white);letter-spacing:1px;margin-bottom:4px}
+.cta p{font-size:13px;color:rgba(255,255,255,.8);margin:0;line-height:1.5}
+.cta-btn{background:var(--navy);color:var(--white);padding:13px 22px;border-radius:8px;font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:13px;letter-spacing:2px;text-transform:uppercase;text-decoration:none;white-space:nowrap;display:inline-block;text-align:center}
+
+/* ── FOOTER ── */
+.footer{background:var(--navy);padding:18px 48px;display:flex;justify-content:space-between;align-items:center;border-top:1px solid rgba(255,255,255,.06)}
+.footer-brand{font-family:'Bebas Neue',sans-serif;font-size:17px;letter-spacing:2px;color:rgba(255,255,255,.3)}
+.footer-brand span{color:var(--orange)}
+.footer-right{font-size:11px;color:var(--cyan);font-weight:600}
+
+@media print{body{background:white}.page{box-shadow:none}}
+</style>
+</head>
+<body>
+<div class="page">
+
+<!-- ── COVER ── -->
+<div class="cover">
+  <div class="cover-grid">
+    <div class="cover-left">
+      <div class="cover-eyebrow">TorqueOps · For Field Services & Trades</div>
+      <div class="cover-h1">
+        TORQUE<span class="accent"> 13</span>
+        <span class="sub">CASH FORECAST</span>
+      </div>
+      <div class="cover-tagline">Why your HVAC, contracting, or restoration business is always "busy but broke" — and the one tool that fixes it forever.</div>
+      <div class="badges">
+        <span class="badge orange">Field Services</span>
+        <span class="badge green">Free Template</span>
+        <span class="badge amber">13-Week Visibility</span>
+      </div>
+    </div>
+
+    <!-- MINI 13-WEEK GRID -->
+    <div class="cover-right">
+      <div class="mini-label">Your 13-Week Cash Horizon</div>
+      <div class="week-grid-mini">
+        <div class="wk-bar" style="background:#10B981;height:36px"><div class="wk-num">1</div></div>
+        <div class="wk-bar" style="background:#10B981;height:44px"><div class="wk-num">2</div></div>
+        <div class="wk-bar" style="background:#F59E0B;height:28px"><div class="wk-num">3</div></div>
+        <div class="wk-bar" style="background:#10B981;height:40px"><div class="wk-num">4</div></div>
+        <div class="wk-bar" style="background:#10B981;height:48px"><div class="wk-num">5</div></div>
+        <div class="wk-bar" style="background:#DC2626;height:18px"><div class="wk-num">6</div></div>
+        <div class="wk-bar" style="background:#DC2626;height:14px"><div class="wk-num">7</div></div>
+        <div class="wk-bar" style="background:#F59E0B;height:24px"><div class="wk-num">8</div></div>
+        <div class="wk-bar" style="background:#10B981;height:38px"><div class="wk-num">9</div></div>
+        <div class="wk-bar" style="background:#10B981;height:42px"><div class="wk-num">10</div></div>
+        <div class="wk-bar" style="background:#10B981;height:36px"><div class="wk-num">11</div></div>
+        <div class="wk-bar" style="background:#F59E0B;height:26px"><div class="wk-num">12</div></div>
+        <div class="wk-bar" style="background:#10B981;height:44px"><div class="wk-num">13</div></div>
+      </div>
+      <div class="legend-row">
+        <div class="leg-item"><div class="leg-dot" style="background:#10B981"></div>Strong</div>
+        <div class="leg-item"><div class="leg-dot" style="background:#F59E0B"></div>Watch</div>
+        <div class="leg-item"><div class="leg-dot" style="background:#DC2626"></div>Alert</div>
+      </div>
+      <div class="stat-cards">
+        <div class="stat-card">
+          <div class="stat-num" style="color:var(--orange)">$50K+</div>
+          <div class="stat-lbl">Avg. Cash Found</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num" style="color:var(--green)">30 Min</div>
+          <div class="stat-lbl">To Set Up</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="cover-stripe"></div>
+</div>
+
+<!-- ALERT BANNER -->
+<div class="alert-banner">
+  <div class="ab-icon">⚡</div>
+  <div class="ab-text">Most field service owners manage cash by checking their bank balance Monday morning and hoping. The ones who scale past $5M use a Torque 13 Forecast.</div>
+</div>
+
+<div class="body">
+
+<!-- ── SECTION 1: THE PROBLEM ── -->
+<div class="section">
+  <div class="sec-label">The Problem</div>
+  <h2>The AR Timing Gap Nobody Talks About</h2>
+  <p>You finished the work. You sent the invoice. But insurance companies, commercial accounts, and slow-pay customers don't care about your payroll date. They pay in 30, 45, or 90 days. <strong>You pay your techs every week.</strong></p>
+  <p>That gap — between when you earn money and when it lands — is the single biggest cash flow problem in field services. And your P&L will never show it to you.</p>
+
+  <!-- AR TIMING WATERFALL -->
+  <div class="callout" style="background:rgba(245,158,11,.06)">
+    <div class="callout-bar" style="background:var(--amber)"></div>
+    <div class="callout-inner"><p><strong>On $50,000 billed this week — here's when it actually lands in your bank:</strong></p></div>
+  </div>
+
+  <div class="waterfall">
+    <div class="wf-row">
+      <div class="wf-label">Same week (cash/card)</div>
+      <div class="wf-bar-wrap"><div class="wf-bar" style="width:55%;background:var(--green)">$27,500 · 55%</div></div>
+      <div class="wf-pct" style="color:var(--green)">55%</div>
+    </div>
+    <div class="wf-row">
+      <div class="wf-label">Week +1 (Net-30 start)</div>
+      <div class="wf-bar-wrap"><div class="wf-bar" style="width:20%;background:var(--blue)">$10,000</div></div>
+      <div class="wf-pct" style="color:var(--blue)">20%</div>
+    </div>
+    <div class="wf-row">
+      <div class="wf-label">Week +2 (Net-30/45)</div>
+      <div class="wf-bar-wrap"><div class="wf-bar" style="width:15%;background:var(--amber)">$7,500</div></div>
+      <div class="wf-pct" style="color:var(--amber)">15%</div>
+    </div>
+    <div class="wf-row">
+      <div class="wf-label">Week +3 (Insurance/GC)</div>
+      <div class="wf-bar-wrap"><div class="wf-bar" style="width:8%;background:var(--orange)">$4K</div></div>
+      <div class="wf-pct" style="color:var(--orange)">8%</div>
+    </div>
+    <div class="wf-row">
+      <div class="wf-label">Bad debt / write-off</div>
+      <div class="wf-bar-wrap"><div class="wf-bar" style="width:2%;background:var(--red)">—</div></div>
+      <div class="wf-pct" style="color:var(--red)">2%</div>
+    </div>
+  </div>
+  <p style="font-size:12px;color:#64748b;font-style:italic">The Torque 13 makes this timing visible 13 weeks in advance — so you're never surprised.</p>
+</div>
+
+<!-- ── SECTION 2: WHAT IT TELLS YOU ── -->
+<div class="section">
+  <div class="sec-label">What the Torque 13 Tells You</div>
+  <h2>Five Things Your Accountant Can't Show You</h2>
+
+  <div class="five-grid">
+    <div class="five-item">
+      <div class="five-num" style="background:rgba(232,93,26,.1);color:var(--orange)">1</div>
+      <div class="five-body" style="background:rgba(255,255,255,.03)">
+        <div class="five-title" style="color:#fff">Exactly when each dollar lands — not when you billed it</div>
+        <div class="five-desc">Eliminates the "I thought I had more than that" moment permanently</div>
+      </div>
+    </div>
+    <div class="five-item">
+      <div class="five-num" style="background:rgba(245,158,11,.1);color:var(--amber)">2</div>
+      <div class="five-body" style="background:rgba(255,255,255,.02)">
+        <div class="five-title" style="color:#fff">Which weeks you'll be tight — 13 weeks before it happens</div>
+        <div class="five-desc">Time to accelerate collections, draw on your line, or delay a purchase</div>
+      </div>
+    </div>
+    <div class="five-item">
+      <div class="five-num" style="background:rgba(16,185,129,.1);color:var(--green)">3</div>
+      <div class="five-body" style="background:rgba(255,255,255,.03)">
+        <div class="five-title" style="color:#fff">Whether you can afford that new truck or hire right now</div>
+        <div class="five-desc">Cash-based decision making — not P&L-based wishful thinking</div>
+      </div>
+    </div>
+    <div class="five-item">
+      <div class="five-num" style="background:rgba(6,182,212,.1);color:var(--cyan)">4</div>
+      <div class="five-body" style="background:rgba(255,255,255,.02)">
+        <div class="five-title" style="color:#fff">Your real gross margin per week — after parts, labor, fleet</div>
+        <div class="five-desc">Reveals which service types make money vs. which you're doing for free</div>
+      </div>
+    </div>
+    <div class="five-item">
+      <div class="five-num" style="background:rgba(27,79,216,.1);color:var(--blue)">5</div>
+      <div class="five-body" style="background:rgba(255,255,255,.03)">
+        <div class="five-title" style="color:#fff">How much cash you need in reserve for slow season</div>
+        <div class="five-desc">Build the off-season cushion in August — not January when it's already gone</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── SECTION 3: THE 13-WEEK VISUAL ── -->
+<div class="section">
+  <div class="sec-label">The Visual</div>
+  <h2>Your Cash Horizon at a Glance</h2>
+  <p>Every Monday morning, this is what you see — your exact cash position week by week, with alert flags before a problem arrives.</p>
+
+  <div class="week-explainer">
+    <div class="we-title">Example — $8M HVAC Company · 13-Week Cash View</div>
+    <div class="week-grid-full">
+      <div class="wk-full"><div class="wk-bar-full" style="height:48px;background:#10B981;border-radius:4px 4px 0 0"></div><div class="wk-n">1</div></div>
+      <div class="wk-full"><div class="wk-bar-full" style="height:52px;background:#10B981;border-radius:4px 4px 0 0"></div><div class="wk-n">2</div></div>
+      <div class="wk-full"><div class="wk-bar-full" style="height:38px;background:#F59E0B;border-radius:4px 4px 0 0"></div><div class="wk-n">3</div></div>
+      <div class="wk-full"><div class="wk-bar-full" style="height:44px;background:#10B981;border-radius:4px 4px 0 0"></div><div class="wk-n">4</div></div>
+      <div class="wk-full"><div class="wk-bar-full" style="height:56px;background:#10B981;border-radius:4px 4px 0 0"></div><div class="wk-n">5</div></div>
+      <div class="wk-full"><div class="wk-bar-full" style="height:20px;background:#DC2626;border-radius:4px 4px 0 0;border:2px solid rgba(220,38,38,.5)"></div><div class="wk-n">6</div></div>
+      <div class="wk-full"><div class="wk-bar-full" style="height:16px;background:#DC2626;border-radius:4px 4px 0 0;border:2px solid rgba(220,38,38,.5)"></div><div class="wk-n">7</div></div>
+      <div class="wk-full"><div class="wk-bar-full" style="height:32px;background:#F59E0B;border-radius:4px 4px 0 0"></div><div class="wk-n">8</div></div>
+      <div class="wk-full"><div class="wk-bar-full" style="height:46px;background:#10B981;border-radius:4px 4px 0 0"></div><div class="wk-n">9</div></div>
+      <div class="wk-full"><div class="wk-bar-full" style="height:50px;background:#10B981;border-radius:4px 4px 0 0"></div><div class="wk-n">10</div></div>
+      <div class="wk-full"><div class="wk-bar-full" style="height:44px;background:#10B981;border-radius:4px 4px 0 0"></div><div class="wk-n">11</div></div>
+      <div class="wk-full"><div class="wk-bar-full" style="height:36px;background:#F59E0B;border-radius:4px 4px 0 0"></div><div class="wk-n">12</div></div>
+      <div class="wk-full"><div class="wk-bar-full" style="height:52px;background:#10B981;border-radius:4px 4px 0 0"></div><div class="wk-n">13</div></div>
+    </div>
+    <div class="week-key">
+      <div class="wk-key-item"><div class="wk-swatch" style="background:#10B981"></div>Strong — above minimum reserve</div>
+      <div class="wk-key-item"><div class="wk-swatch" style="background:#F59E0B"></div>Watch — within 20% of reserve floor</div>
+      <div class="wk-key-item"><div class="wk-swatch" style="background:#DC2626"></div>Alert — below minimum reserve, act now</div>
+    </div>
+    <div style="margin-top:12px;padding:10px 14px;background:rgba(220,38,38,.08);border-radius:6px;border-left:3px solid var(--red)">
+      <div style="font-size:12px;color:#94a3b8"><strong style="color:#f87171">Weeks 6–7 flagged red</strong> — This owner sees the cash crunch coming 6 weeks early. Time to call commercial accounts, delay a parts order, or use the credit line strategically. Without the Torque 13: they find out on payroll Friday.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ── SECTION 4: WHAT'S IN THE TEMPLATE ── -->
+<div class="section">
+  <div class="sec-label">What's Included</div>
+  <h2>The Free Template — Pre-Built for Field Services</h2>
+  <p>Built for HVAC, plumbing, contracting, and restoration businesses. Zero formulas to write — just fill in your numbers.</p>
+
+  <div class="features-grid">
+    <div class="feat">
+      <div class="feat-check">✓</div>
+      <div class="feat-text">
+        <div class="feat-title">Revenue by Service Type</div>
+        <div class="feat-sub">8 categories — HVAC, plumbing, restoration, maintenance, commercial, residential, and more</div>
+      </div>
+    </div>
+    <div class="feat">
+      <div class="feat-check">✓</div>
+      <div class="feat-text">
+        <div class="feat-title">AR Collection Waterfall</div>
+        <div class="feat-sub">4 timing buckets — maps when each dollar actually lands, not when you invoice</div>
+      </div>
+    </div>
+    <div class="feat">
+      <div class="feat-check">✓</div>
+      <div class="feat-text">
+        <div class="feat-title">WIP Tracker (Contractors)</div>
+        <div class="feat-sub">Unbilled work in progress — surfaces trapped cash for construction and restoration</div>
+      </div>
+    </div>
+    <div class="feat">
+      <div class="feat-check">✓</div>
+      <div class="feat-text">
+        <div class="feat-title">Direct Cost Tracking</div>
+        <div class="feat-sub">Labor, parts, fleet, subs — real gross margin per week, not just total revenue</div>
+      </div>
+    </div>
+    <div class="feat">
+      <div class="feat-check">✓</div>
+      <div class="feat-text">
+        <div class="feat-title">Fixed Overhead + QBO Mapping</div>
+        <div class="feat-sub">Payroll, rent, insurance, equipment — mapped to QuickBooks Online categories</div>
+      </div>
+    </div>
+    <div class="feat">
+      <div class="feat-check">✓</div>
+      <div class="feat-text">
+        <div class="feat-title">Reserve Alert System</div>
+        <div class="feat-sub">Closing cash balance flags red when you're below your minimum reserve threshold</div>
+      </div>
+    </div>
+    <div class="feat">
+      <div class="feat-check">✓</div>
+      <div class="feat-text">
+        <div class="feat-title">QBO · Jobber · ServiceTitan Ready</div>
+        <div class="feat-sub">Integration guide included — pull your numbers directly from the tools you use</div>
+      </div>
+    </div>
+    <div class="feat">
+      <div class="feat-check">✓</div>
+      <div class="feat-text">
+        <div class="feat-title">13-Week Executive Dashboard</div>
+        <div class="feat-sub">Print-ready visual summary — share with your bank, partner, or CFO</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── SECTION 5: THE GEAR FRAMEWORK ── -->
+<div class="section">
+  <div class="sec-label">The Next Step</div>
+  <h2>Want Us to Build and Interpret It With You?</h2>
+  <p>The free template gets you started. The TorqueOps engagement loads it with your actual numbers, finds the leaks, and fixes them.</p>
+
+  <div class="staircase">
+    <div class="stair" style="background:rgba(16,185,129,.06);border:1px solid rgba(16,185,129,.15)">
+      <div class="stair-gear-box" style="background:rgba(16,185,129,.1)">
+        <div class="sg-label" style="color:var(--green)">LOW</div>
+        <div class="sg-gear" style="color:var(--green)">GEAR</div>
+      </div>
+      <div class="stair-body">
+        <div class="sb-name" style="color:#fff">Profit &amp; Cash Leak Diagnostic</div>
+        <div class="sb-tagline" style="color:var(--green)">3–4 weeks · Fixed fee · You keep the roadmap regardless</div>
+        <div class="sb-desc">We map every cash leak — AR lag, underpriced work, job costing gaps, unbilled WIP. Torque 13 loaded with your actual numbers. Top 3 leaks found and prioritized.</div>
+      </div>
+      <div class="stair-price">
+        <div class="sp-num" style="color:var(--green)">$2,500<br>–$5,000</div>
+        <div class="sp-lbl">flat fee</div>
+      </div>
+    </div>
+    <div class="stair" style="background:rgba(245,158,11,.06);border:1px solid rgba(245,158,11,.15)">
+      <div class="stair-gear-box" style="background:rgba(245,158,11,.1)">
+        <div class="sg-label" style="color:var(--amber)">HIGH</div>
+        <div class="sg-gear" style="color:var(--amber)">GEAR</div>
+      </div>
+      <div class="stair-body">
+        <div class="sb-name" style="color:#fff">Profit Recovery Sprint</div>
+        <div class="sb-tagline" style="color:var(--amber)">4–6 weeks · Fixed fee · Hands-on execution</div>
+        <div class="sb-desc">We fix the top 2–3 issues — pricing gaps, job costing, AR automation, cash visibility systems. Most clients see positive ROI within 30 days.</div>
+      </div>
+      <div class="stair-price">
+        <div class="sp-num" style="color:var(--amber)">$5,000<br>–$7,500</div>
+        <div class="sp-lbl">fixed</div>
+      </div>
+    </div>
+    <div class="stair" style="background:rgba(232,93,26,.06);border:1px solid rgba(232,93,26,.15)">
+      <div class="stair-gear-box" style="background:rgba(232,93,26,.1)">
+        <div class="sg-label" style="color:var(--orange)">OVER</div>
+        <div class="sg-gear" style="color:var(--orange)">DRIVE</div>
+      </div>
+      <div class="stair-body">
+        <div class="sb-name" style="color:#fff">TorqueOps Partner — Ongoing Oversight</div>
+        <div class="sb-tagline" style="color:var(--orange)">Monthly · Only after value is proven</div>
+        <div class="sb-desc">Weekly operating rhythm, monthly deep-dive, continuous profit optimization. Your team runs the business. You get your time back.</div>
+      </div>
+      <div class="stair-price">
+        <div class="sp-num" style="color:var(--orange)">$4,000<br>–$8,000</div>
+        <div class="sp-lbl">/month</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- GUARANTEE -->
+<div class="guarantee">
+  <div class="g-num">$25K</div>
+  <div>
+    <div class="g-title">The Equalizer Guarantee</div>
+    <div class="g-desc">If the Diagnostic doesn't identify at least <strong>$25,000 in recoverable profit, cash recovery, or annual savings</strong> — you keep the Torque 13 and the full roadmap for free. No contracts. No pressure. No risk. There is almost no downside to trying this.</div>
+  </div>
+</div>
+
+<!-- CTA -->
+<div class="cta">
+  <div>
+    <h3>Ready to See Your Cash 13 Weeks Out?</h3>
+    <p>Get the free template. Or book a 20-minute call — no pitch, no prep needed, just clarity.</p>
+    <div style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,.5);margin-top:8px">No Pitch · No Pressure · No Prep Needed</div>
+  </div>
+  <div style="display:flex;flex-direction:column;gap:10px">
+    <a href="mailto:meshpatel74@gmail.com?subject=Free Torque 13 Template" class="cta-btn">Get Free Template →</a>
+    <a href="mailto:meshpatel74@gmail.com?subject=Profit Diagnostic Inquiry" class="cta-btn" style="background:rgba(255,255,255,.15);color:#fff">Book a 20-Min Call →</a>
+  </div>
+</div>
+
+</div><!-- /body -->
+
+<div class="footer">
+  <div class="footer-brand"><span>TORQUE</span>OPS · Where Profit Meets Execution</div>
+  <div style="font-size:11px;color:rgba(255,255,255,.25)">Dharmesh Patel, MBA · Dublin, CA</div>
+  <div class="footer-right">torqueops.com · linkedin.com/in/analyticshacker</div>
+</div>
+
+</div><!-- /page -->
+</body>
+</html>
